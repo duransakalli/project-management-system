@@ -26,4 +26,9 @@ public class GlobalExceptionHandler {
         return ex.getMessage();
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String handleBadCredentialsException(BadCredentialsException ex) {
+        return ex.getMessage();
+    }
 }
