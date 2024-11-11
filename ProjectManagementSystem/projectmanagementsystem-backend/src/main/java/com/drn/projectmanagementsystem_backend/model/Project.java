@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,26 +15,29 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Issue {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String name;
     private String description;
-    private Status status;
-    private Long projectId;
-    private Priority priority;
-    private LocalDate dueDate;
+    private String category;
+
     private List<String> tags = new ArrayList<>();
 
-    @ManyToOne
-    private User assignee;
-
     @JsonIgnore
-    @ManyToOne
-    private Project project;
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Chat chat;
 
-    private List<String> comments;
+    @ManyToOne
+    private User owner;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Issue> issues = new ArrayList<>();
+
+    @ManyToMany
+    private List<User> team = new ArrayList<>();
+
 }
