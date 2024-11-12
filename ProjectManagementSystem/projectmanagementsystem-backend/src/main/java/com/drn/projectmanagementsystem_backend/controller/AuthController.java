@@ -26,19 +26,20 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private CustomUserDetailsImpl customUserDetails;
 
-    public AuthController(UserRepository userRepository,
-                          PasswordEncoder passwordEncoder,
-                          CustomUserDetailsImpl customUserDetails) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.customUserDetails = customUserDetails;
-    }
+//    public AuthController(UserRepository userRepository,
+//                          PasswordEncoder passwordEncoder,
+//                          CustomUserDetailsImpl customUserDetails) {
+//        this.userRepository = userRepository;
+//        this.passwordEncoder = passwordEncoder;
+//        this.customUserDetails = customUserDetails;
+//    }
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) {

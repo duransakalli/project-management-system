@@ -1,35 +1,27 @@
 package com.drn.projectmanagementsystem_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Chat {
+public class Invitation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String token;
+    private String email;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "project_id")
     private Project project;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Message> messages;
-
-    @ManyToMany
-    private List<User> users = new ArrayList<>();
 }

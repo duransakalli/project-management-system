@@ -31,4 +31,22 @@ public class GlobalExceptionHandler {
     public String handleBadCredentialsException(BadCredentialsException ex) {
         return ex.getMessage();
     }
+
+    @ExceptionHandler(ProjectNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleProjectNotFoundException(ProjectNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(InvalidProjectDataException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInvalidProjectDataException(InvalidProjectDataException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(UserNotAuthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String handleUserNotAuthorizedException(UserNotAuthorizedException ex) {
+        return ex.getMessage();
+    }
 }

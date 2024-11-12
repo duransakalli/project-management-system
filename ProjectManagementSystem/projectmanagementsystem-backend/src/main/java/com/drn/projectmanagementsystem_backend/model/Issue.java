@@ -25,9 +25,11 @@ public class Issue {
     private String title;
     private String description;
     private Status status;
-    private Long projectId;
+//    private Long projectId;
     private Priority priority;
     private LocalDate dueDate;
+
+    @ElementCollection
     private List<String> tags = new ArrayList<>();
 
     @ManyToOne
@@ -35,6 +37,7 @@ public class Issue {
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @JsonIgnore
