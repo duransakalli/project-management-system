@@ -16,17 +16,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final UserService userService;
     private final ChatService chatService;
-
-    public ProjectServiceImpl(ProjectRepository projectRepository, UserService userService, ChatService chatService) {
-        this.projectRepository = projectRepository;
-        this.userService = userService;
-        this.chatService = chatService;
-    }
 
     @Override
     public Project createProject(Project project, User user) throws InvalidProjectDataException {
