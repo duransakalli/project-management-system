@@ -49,4 +49,18 @@ public class GlobalExceptionHandler {
     public String handleUserNotAuthorizedException(UserNotAuthorizedException ex) {
         return ex.getMessage();
     }
+
+    @ExceptionHandler(InvitationNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleInvitationNotFoundException(InvitationNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(IssueNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleIssueNotFoundException(IssueNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+
 }

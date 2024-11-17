@@ -22,6 +22,6 @@ public class Invitation {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
-    private Project project;
+    private Long projectId;
 
 }
