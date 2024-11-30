@@ -62,5 +62,11 @@ public class GlobalExceptionHandler {
         return ex.getMessage();
     }
 
+    @ExceptionHandler(CommentNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleCommentNotFoundException(CommentNotFoundException ex) {
+        return ex.getMessage();
+    }
+
 
 }
