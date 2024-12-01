@@ -110,13 +110,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Chat getChatByProjectId(Long projectId) throws ProjectNotFoundException {
         Project project = getProjectById(projectId);
-
         return project.getChat();
     }
 
     @Override
     public List<Project> searchProject(String keyword, User user) throws ProjectNotFoundException, UserNotFoundException {
-
         return projectRepository.findByNameContainingAndTeamContains(keyword, user);
     }
 

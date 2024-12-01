@@ -56,6 +56,13 @@ public class GlobalExceptionHandler {
         return ex.getMessage();
     }
 
+    @ExceptionHandler(ChatNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleIChatNotFoundException(ChatNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+
     @ExceptionHandler(IssueNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleIssueNotFoundException(IssueNotFoundException ex) {

@@ -8,6 +8,7 @@ import com.drn.projectmanagementsystem_backend.repository.UserRepository;
 import com.drn.projectmanagementsystem_backend.request.LoginRequest;
 import com.drn.projectmanagementsystem_backend.response.AuthResponse;
 import com.drn.projectmanagementsystem_backend.service.CustomUserDetailsImpl;
+import com.drn.projectmanagementsystem_backend.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,11 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-    private CustomUserDetailsImpl customUserDetails;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomUserDetailsImpl customUserDetails;
+    private final SubscriptionService subscriptionService;
+
 
 //    public AuthController(UserRepository userRepository,
 //                          PasswordEncoder passwordEncoder,
@@ -56,6 +59,8 @@ public class AuthController {
                         .password(passwordEncoder.encode(user.getPassword()))
                         .build()
         );
+
+        subscriptionService.createSubscription(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
